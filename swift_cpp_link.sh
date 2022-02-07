@@ -1,11 +1,33 @@
 #!/bin/bash
 
+HELP=$(cat <<EOF
+This script automates compiling C(++) that calls Swift.
+    --swift <file>.swift    The Swift source exposing the C(++) API.
+                            Default: print_num.swift
+    --cpp <file>.cpp        The C(++) source that calls your Swift.
+                            Default: print_num.cpp
+    --output, -o            The name your linked executable will have.
+EOF
+)
+
 LINKED_OUT="linked"
+SWIFT_FILE="print_num.swift"
+CPP_FILE="print_num.cpp"
+
+if [[ $# -eq 0 ]]; then
+    #printf "$HELP"
+    echo "$HELP"
+    #echo "No .swift/.cpp source given, default vlaues used."
+fi
 
 while [[ $# -gt 0 ]]
 do
 key=$1
 case $key in
+    -h|--help)
+    echo $HELP
+    exit 1
+    ;;
     --swift)
     SWIFT_FILE=$2
     shift # arg
@@ -16,7 +38,7 @@ case $key in
     shift # arg
     shift #value
     ;;
-    -o)
+    -o|--output)
     LINKED_OUT=$2
     shift # arg
     shift #value
@@ -24,8 +46,8 @@ case $key in
 esac
 done
 
-echo "Swift: $SWIFT_FILE"
-echo "Cpp: $CPP_FILE"
+echo "Swift source: $SWIFT_FILE"
+echo "Cpp source: $CPP_FILE"
 
 # Build Swift library for CPP import
 case "$(uname -s)" in
