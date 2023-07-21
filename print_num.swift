@@ -2,6 +2,7 @@ import Foundation
 
 struct Accumulator {
     static var shared = Accumulator(initialValue: 1)
+    // int is 32 bits in C
     var values: [Int32]
     private init(initialValue: Int32) {
         values = [initialValue]

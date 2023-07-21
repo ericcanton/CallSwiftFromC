@@ -10,7 +10,7 @@ This script automates compiling C(++) that calls Swift.
 EOF
 )
 
-LINKED_OUT="linked"
+LINKED_OUT="print_num"
 SWIFT_FILE="print_num.swift"
 CPP_FILE="print_num.c"
 
