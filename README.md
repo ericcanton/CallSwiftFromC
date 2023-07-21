@@ -17,6 +17,6 @@ Compile `print_num.swift` and `print_num.c` into a single executable with:
 Then run with `./print_num`.
 
 `swift_cpp_link.sh` takes the following actions:
-1. complies the Swift code in `print_num.swift` which has a shared stateful array, and some functions accessible from C that modify or print the state of the `.shared` static struct.
-2. It then dumps `print_num.c` into an object file, and then 
+1. complies the Swift code in `print_num.swift` to a dynamic library. This defines a struct `Accumulator` with a `[Int32]` and a `.shared` static singleton, and some functions accessible from C that modify or print the state of the `.shared` struct.
+2. generates an object header (`.o`) from `print_num.c`, and finally
 3. links `print_num.o` to the Swift dynamic lib and produces a valid executable.
