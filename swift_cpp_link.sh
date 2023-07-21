@@ -10,15 +10,9 @@ This script automates compiling C(++) that calls Swift.
 EOF
 )
 
-LINKED_OUT="linked"
+LINKED_OUT="print_num"
 SWIFT_FILE="print_num.swift"
-CPP_FILE="print_num.cpp"
-
-if [[ $# -eq 0 ]]; then
-    #printf "$HELP"
-    echo "$HELP"
-    #echo "No .swift/.cpp source given, default vlaues used."
-fi
+CPP_FILE="print_num.c"
 
 while [[ $# -gt 0 ]]
 do
